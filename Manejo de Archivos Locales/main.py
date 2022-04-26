@@ -26,7 +26,7 @@ def LoadData2():
     archivo = open("Manejo de Archivos Locales/prueba/prueba2.txt","r")
     #Codigo
     txt = archivo.read()
-    
+    archivo.close()
 
     #Escribir Informacion
     archivo = open("Manejo de Archivos Locales/prueba/prueba2.txt","w")
@@ -34,7 +34,7 @@ def LoadData2():
     for i in range(1000000):
         txt += str(i) + "\n"
     archivo.write(txt)
-    
+    archivo.close()
 
 
 
