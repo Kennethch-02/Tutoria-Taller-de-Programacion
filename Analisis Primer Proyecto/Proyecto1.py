@@ -145,8 +145,9 @@ class Juego():
 class Jugador():
     def __init__(self, nombre):
         self.nombre = nombre;
-        self.marcha = 1;
+        self.marcha = 2;
         self.velocity = 10;
+        self.rpm = [1,2,2]
         self.max_velocity = [15,45,70]
         self.min_velocity = [10,15,45]
         self.start = 0
@@ -163,13 +164,16 @@ class Jugador():
     def Update(self):
         while(True):
             if(self.acelerando):
-                if((time.time() - self.start)  < 1):
-                    self.velocity += (15-10)/1
+                if((time.time() - self.start)  < self.rpm[self.marcha-1]):
+                    tiempo = time.time() - self.start
+                    aceleracion = (self.max_velocity[self.marcha-1]-self.min_velocity[self.marcha-1])/self.rpm[self.marcha-1]
+                    self.velocity = self.min_velocity[self.marcha-1]+aceleracion*tiempo
                 else:
-                    print(self.velocity)
                     print("RPM Maximas")
+                    
             else:
                 self.velocity = self.min_velocity[self.marcha-1]
+            print(self.velocity)
             
     def acelerar(self,Press,Release):
         if(Press):
